@@ -123,4 +123,7 @@ python code/point.py > log
 ```
 生成的点的坐标如：
 <div align="center">
-<img src="./images/point.png"  width = "1000" />              </div>
+<img src="./images/point.png"  width = "400" />              </div>
+边缘坐标可视化效果：
+<div align="center">
+<img src="./images/point_edge.png"  width = "600" />              </div>
