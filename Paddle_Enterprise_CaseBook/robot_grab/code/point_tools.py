@@ -3,13 +3,17 @@ import cv2
 import pycocotools.mask as mask_util
 
 def parse_mask_edge_points(result=None, point_interval=15, score_threshold=0.5, area_threshold=50, point_length_threshold=6):
-    """解析Mask RCNN预测返回的每个结果中的边界坐标
+    """Parsing MaskRCNN Predict Result 
         Args:
-            result: PaddleX-MaskRCNN预测结果
-            point_interval: mask边界点采样间隔
-            score_threshold: 得分阈值，小于该阈值的mask得分，则不保存本次mask的边界
-            area_threshold: mask区域面积阈值，小于该阈值的maks面积，则不保存本次mask的边界
-            point_length_threshold: 边界点个数阈值，小于该阈值的边界点个数，则不保存本次mask的边界
+            result: PaddleX-MaskRCNN Predict Result.
+            point_interval: MaskRCNN-Boundary point sampling interval.
+            score_threshold: Score threshold. If the score of the mask is
+                             smaller than this threshold, the boundary of the mask will not be saved.
+            area_threshold: Mask area threshold. If the MAKS area is
+                             smaller than this threshold, the mask boundary is not saved.
+            point_length_threshold: Boundary points number threshold, less than
+                                    the number of boundary points of this threshold,
+                                    no saving this Mask boundary.
         Retrun: List
             eg:
                 import paddlex
@@ -22,7 +26,7 @@ def parse_mask_edge_points(result=None, point_interval=15, score_threshold=0.5, 
                 result = model.predict('dataset/JPEGImages/Image_20210615204254171.bmp', transforms=model.test_transforms)
 
                 mask_edge_points = parse_mask_edge_points(result, score_threshold=0.95)
-                mask_edge_points[0] # 即result[0]中的mask边界
+                mask_edge_points[0] # Mask boundaries in Result[0]
     """
     assert result is not None, \
         "Please make sure the input is not None."
@@ -46,12 +50,12 @@ def parse_mask_edge_points(result=None, point_interval=15, score_threshold=0.5, 
 
 
 def visualize_mask_edge(img, mask_edge_points=None, point_size=1, color=(0,0,255)):
-    """可视化边界点
+    """Visual boundary point
         Args:
-            img: 输入图片
-            mask_edge_points: 解析后的边界点结果--List
-            point_size: 边界点绘制的大小
-            color: 绘制的颜色
+            img: Input image.
+            mask_edge_points: Results after parsing--List.
+            point_size: Boundary point drawing size.
+            color: Color of drawing.
         Retrun: numpy.ndarray
             eg:
                 import paddlex
